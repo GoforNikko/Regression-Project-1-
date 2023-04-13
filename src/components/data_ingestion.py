@@ -25,7 +25,7 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info('Data Ingestion methods Starts')
         try:
-            df=pd.read_csv(os.path.join('notebooks/data','gemstone.csv'))
+            df=pd.read_csv('notebooks/data/gemstone.csv')
             logging.info('Dataset read as pandas Dataframe')
 
             os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path),exist_ok=True)
@@ -47,3 +47,10 @@ class DataIngestion:
         except Exception as e:
             logging.info('Exception occured at Data Ingestion stage')
             raise CustomException(e,sys)
+        
+        
+## run data ingestion
+
+if __name__=='__main__':
+    obj=DataIngestion()
+    train_data,test_data=obj.initiate_data_ingestion()
